@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql_etl
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: yash
+      MYSQL_DATABASE: bombay_shavings
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  airflow:
+    image: apache/airflow:2.8.1
+    container_name: airflow_etl
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=mysql+pymysql://root:yash@mysql:3306/airflow_db
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./etl_books:/opt/airflow/etl_books
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+      airflow db init &&
+      airflow users create --username admin --firstname Yash --lastname User --role Admin --email admin@example.com --password admin &&
+      airflow webserver & airflow scheduler
+      "
+
+volumes:
+  mysql_data:
