@@ -58,3 +58,4 @@
 [2026-04-06 10:07:41] {'function': 'scrape_books', 'stage': 'page_completed', 'page_number': 2, 'books_collected_so_far': 40}
 [2026-04-06 10:08:57] {'function': 'scrape_books', 'stage': 'page_completed', 'page_number': 3, 'books_collected_so_far': 60}
 [2026-04-06 10:10:13] {'function': 'scrape_books', 'status': 'started'}
+[2026-04-06 10:11:28] {'function': 'scrape_books', 'stage': 'page_completed', 'page_number': 1, 'books_collected_so_far': 20}
