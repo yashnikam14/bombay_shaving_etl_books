@@ -94,6 +94,9 @@ async def scrape_books():
                                           'exception_type': type(e).__name__, 'trace': traceback.format_exc()})
                         continue
 
+                print({
+                    'function': 'scrape_books', 'stage': 'page_completed',
+                    'page_number': page_number, 'books_collected_so_far': len(books)})
                 logger.write_log({
                     'function': 'scrape_books', 'stage': 'page_completed',
                     'page_number': page_number, 'books_collected_so_far': len(books)})
