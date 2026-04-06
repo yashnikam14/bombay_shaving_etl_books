@@ -59,6 +59,7 @@ def transform_data(data):
             logger.write_log({'function': 'transform_data','stage': 'deduplication', 'exception': str(e),
                 'exception_type': type(e).__name__, 'trace': traceback.format_exc()})
 
+        print({'function': 'transform_data', 'status': 'completed', 'total_records': len(df)})
         logger.write_log({'function': 'transform_data', 'status': 'completed', 'total_records': len(df)})
 
         return df
